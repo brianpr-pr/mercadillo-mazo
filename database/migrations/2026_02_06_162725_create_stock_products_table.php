@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_fotos', function (Blueprint $table) {
+        Schema::create('stock_products', function (Blueprint $table) {
             $table->id();
-            $table->string('url'); //Mas que ruta yo veria mas usar un campo tipo blob para almacenar la imagen directamente en la base de datos, pero bueno, eso ya es cuestion de gustos
-            $table->string('description')->nullable();
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('table_products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('stall_id');
+            $table->foreign('stall_id')->references('id')->on('stalls')->onDelete('cascade');
+            $table->unsignedBigInteger('quantity');
+            $table->double('price_per_unit');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_fotos');
+        Schema::dropIfExists('stock_products');
     }
 };

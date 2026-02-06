@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->date("start_date");
             $table->date("end_date");
-            $table->foreign("flea_market_id");
+            $table->unsignedBigInteger('flea_market_id');
+            $table->foreign("flea_market_id")->references('id')->on('flea_markets')->onDelete('cascade');
             // $table->timestamps();
         });
     }

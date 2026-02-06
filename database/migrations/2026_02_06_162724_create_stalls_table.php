@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('stalls', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('flea_market_id');
+            $table->foreign('flea_market_id')->references('id')->on('flea_markets')->onDelete('cascade');
             $table->boolean("home_delivery"); // boolean / string
             $table->string("information");
             $table->boolean("active");
             $table->dateTime("reset_date");
-            $table->foreign("user_id");
-            $table->foreign("flea_market_id");
             $table->timestamps();
         });
     }
