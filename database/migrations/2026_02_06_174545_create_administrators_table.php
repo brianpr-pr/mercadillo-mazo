@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('holidays', function (Blueprint $table) {
-            $table->id();
-            $table->date("start_date");
-            $table->date("end_date");
+        Schema::create('administrators', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('flea_market_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->primary(['user_id', 'flea_market_id']);
         });
     }
 
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('holidays');
+        Schema::dropIfExists('administrators');
     }
 };

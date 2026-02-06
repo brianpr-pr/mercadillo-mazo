@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string("address");
             $table->foreignId("municipality_id");
-            // $table->timestamps();
         });
     }
 
