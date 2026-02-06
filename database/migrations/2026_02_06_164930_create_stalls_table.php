@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('holidays', function (Blueprint $table) {
+        Schema::create('stalls', function (Blueprint $table) {
             $table->id();
-            $table->date("start_date");
-            $table->date("end_date");
+            $table->boolean("home_delivery"); // boolean / string
+            $table->string("information");
+            $table->boolean("active");
+            $table->dateTime("reset_date");
+            $table->foreign("user_id");
             $table->foreign("flea_market_id");
-            // $table->timestamps();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('holidays');
+        Schema::dropIfExists('stalls');
     }
 };

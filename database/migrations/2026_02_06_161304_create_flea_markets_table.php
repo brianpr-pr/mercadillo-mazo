@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('flea_markets_table', function (Blueprint $table) {
+        Schema::create('flea_markets', function (Blueprint $table) {
             $table->id();
             $table->string("address");
             $table->foreignId("municipality_id");
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('flea_markets_table');
+        Schema::dropIfExists('flea_markets');
     }
 };
