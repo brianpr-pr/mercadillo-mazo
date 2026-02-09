@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('url'); //Mas que ruta yo veria mas usar un campo tipo blob para almacenar la imagen directamente en la base de datos, pero bueno, eso ya es cuestion de gustos
             $table->string('description')->nullable();
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

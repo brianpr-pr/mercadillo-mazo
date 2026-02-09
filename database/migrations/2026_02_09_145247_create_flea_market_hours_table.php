@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('stalls', function (Blueprint $table) {
+        Schema::create('flea_market_hours', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->enum('day_of_week', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
             $table->unsignedBigInteger('flea_market_id');
-            $table->boolean("home_delivery"); // boolean / string
-            $table->string("information");
-            $table->boolean("active");
-            $table->dateTime("reset_date");
-            $table->timestamps();
+            $table->time('opening_time');
+            $table->time('closing_time');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('flea_market_id')->references('id')->on('flea_markets')->onDelete('cascade');
         });
     }
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('stalls');
+        Schema::dropIfExists('flea_market_hours');
     }
 };

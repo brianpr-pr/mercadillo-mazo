@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('holidays', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('flea_market_id');
             $table->date("start_date");
             $table->date("end_date");
-            $table->foreignId('flea_market_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+
+            $table->foreign('flea_market_id')->references('id')->on('flea_markets')->onDelete('cascade');
         });
     }
 

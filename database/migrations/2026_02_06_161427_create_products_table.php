@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('fotos')->nullable();
-            $table->enum('unidad_media', ['Kg', 'gr', 'L', 'mL']);
+            $table->string('name');
+            $table->string('photos')->nullable();
+            $table->enum('unit', ['Kg', 'gr', 'L', 'mL']);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
+            $table->timestamps();
+
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

@@ -12,10 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payment_method_stall', function (Blueprint $table) {
-            // Its doesn't appear as foreign key on the database
-            $table->foreignId('payment_method_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
-            $table->foreignId('stall_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->unsignedBigInteger('payment_method_id');
+            $table->unsignedBigInteger('stall_id');
             $table->primary(['payment_method_id', 'stall_id']);
+            $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
+            $table->foreign('stall_id')->references('id')->on('stalls')->onDelete('cascade');
         });
     }
 
