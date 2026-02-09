@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('flea_market_hours', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->enum('day_of_week', ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
+            $table->enum('day_of_week', ['Lunes', 'Martes', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
             $table->unsignedBigInteger('flea_market_id');
             $table->time('opening_time');
             $table->time('closing_time');
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('flea_market_hours');
+        Schema::dropIfExists('schedules');
     }
 };
