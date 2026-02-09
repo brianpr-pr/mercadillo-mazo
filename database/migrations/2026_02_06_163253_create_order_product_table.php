@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('quantity');
             $table->double('price_per_unit');
-            $table->timestamps();
+            $table->enum('status', ['pending', 'shipped', 'delivered'])->default('pending');
             $table->primary(['product_id', 'order_id']);
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
-            $table->foreign('product_id')->references('product_id')->on('stock_products')->onDelete('cascade');
+            $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
         });
     }
 
