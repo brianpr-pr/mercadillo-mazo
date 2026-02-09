@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-            $table->enum('day_of_week', ['Lunes', 'Martes', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']);
+            $table->enum('day_of_week', ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']);
             $table->unsignedBigInteger('flea_market_id');
             $table->time('opening_time');
             $table->time('closing_time');
